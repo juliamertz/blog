@@ -1,0 +1,28 @@
+base_url = "https://juliamertz.dev/"
+title = "Julia Mertz"
+
+generate_feeds = true
+taxonomies = [
+  { name = "kind", feed = true },
+  { name = "tags", feed = true },
+]
+
+compile_sass = true
+minify_html = false
+
+[markdown]
+extra_syntaxes_and_themes = ["static/_syntax"] 
+highlight_code = true
+highlight_theme = "css"
+highlight_themes_css = [
+    { theme = "main", filename = "syntax-theme-dark.css" },
+    { theme = "dawn", filename = "syntax-theme-light.css" },
+]
+
+external_links_target_blank = true
+external_links_no_follow = true
+external_links_no_referrer = true
+
+render_emoji = true
+smart_punctuation = true
+lazy_async_image = true

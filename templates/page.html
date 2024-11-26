@@ -1,0 +1,52 @@
+{% extends "_base.html" %}
+{% import "macros.html" as m %}
+
+{% block description %}{{ page.description }}{% endblock description %}
+
+{% block opengraph %}
+  <meta property="og:title" content="{{ page.title }}" />
+  <meta property="og:description" content="{{ page.description }}" />
+  <meta property="og:url" content="{{ page.permalink }}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="{{ config.title }}" />
+{% endblock opengraph %}
+
+{% block content %}
+  <div class="container">
+    <section class="post">
+      <div class="title-and-info">
+        <h2>{{ page.title }}</h2>
+        <div class="info">
+          <span>{{ page.date | date(format="%Y %b %d") }}</span>
+          {% if page.category %}
+            <span class="divider" />
+            <!-- link to page category if user is building categories -->
+            {% if config.generate_categories_pages %}
+              <span
+                ><a href="/categories/{{ page.category }}"
+                  >{{ page.category }}</a
+                ></span
+              >
+            {% else %}
+              <span>{{ page.category }}</span>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+      <article>
+        {% set prev = false %}
+        {% set next = false %}
+        {% if page.extra.prev %}
+          {% set prev = page.extra.prev %}
+        {% endif %}
+        {% if page.extra.next %}
+          {% set next = page.extra.next %}
+        {% endif %}
+
+        {{ m::chapter(prev=prev, next=next) }}
+        {{ page.content | safe }}
+        {{ m::chapter(prev=prev, next=next) }}
+      </article>
+    </section>
+  </div>
+{% endblock content %}

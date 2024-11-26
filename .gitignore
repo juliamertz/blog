@@ -1,0 +1,8 @@
+public/
+static/syntax-theme-*.css
+
+.direnv
+result/
+
+node_modules/
+package*.json
