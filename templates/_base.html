@@ -1,0 +1,92 @@
+{% import "macros.html" as m %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+
+    <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+    <meta
+      name="description"
+      content="{% block description %}{% if config.description %}{{ config.description }}{% endif %}{% endblock description %}"
+    />
+
+    {% block feeds %}
+    {% endblock feeds %}
+
+    {% block opengraph %}
+    {% endblock opengraph %}
+
+    <!-- Default syntax themes -->
+    <link rel="stylesheet" href="/syntax-theme-light.css" media="screen" />
+    <link
+      rel="stylesheet"
+      href="/syntax-theme-dark.css"
+      media="screen and (prefers-color-scheme: dark)"
+    />
+    <!-- Manual theme override -->
+    <link rel="stylesheet" id="syntax" />
+
+    <link rel="stylesheet" href="/reset.css" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body>
+    <div class="root">
+      <nav>
+        <div class="flex padded">
+          <div class="flex fill vcenter">
+            <a href="/">
+              <h4>
+                {% if config.title %}{{ config.title }}{% else %}Home{% endif %}
+              </h4>
+            </a>
+          </div>
+          <button id="theme-toggle" onclick="theme.toggle()">
+            <!-- <img width="24" height="24" src="/icons/moon.svg"/> -->
+          </button>
+        </div>
+        <div class="header-bar"></div>
+      </nav>
+
+      {% block content %}
+        <div class="container">
+          <div class="posts">
+            {% for page in section.pages %}
+              {% if not page.extra.hidden %}
+                <div class="post">
+                  <div class="info">
+                    <span>{{ page.date | date(format="%Y %b %d") }}</span>
+                  </div>
+                  <a class="header-link" href="{{ page.path }}">
+                    <h4 class="title">{{ page.title }}</h4>
+                  </a>
+                  <p>{{ page.content | safe | striptags | truncate }}</p>
+                  {{ m::tags(taxonomy=page.taxonomies['tags']) }}
+                </div>
+                <hr />
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endblock content %}
+
+      <footer>
+        {% block footer %}
+          <p>Made with <3</p>
+        {% endblock footer %}
+      </footer>
+    </div>
+  </body>
+
+  <script src="/js/theme.js"></script>
+  <script>
+    const theme = new Theme();
+  </script>
+</html>

@@ -1,0 +1,19 @@
+{% extends "_base.html" %}
+
+{% block content %}
+  <div class="container">
+    <section>
+      <h2>Tags</h2>
+    </section>
+    <div class="posts">
+      {% set kind = get_taxonomy(kind="kind") %}
+      {% for page in kind.items %}
+        {% set url = get_taxonomy_url(kind="kind", name=page.name) %}
+        <a class="header-link" href="{{ url }}">
+          <h5 class="title">{{ page.name }}</h5>
+        </a>
+        <hr />
+      {% endfor %}
+    </div>
+  </div>
+{% endblock content %}
