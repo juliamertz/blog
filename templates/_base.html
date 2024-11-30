@@ -17,11 +17,8 @@
       content="{% block description %}{% if config.description %}{{ config.description }}{% endif %}{% endblock description %}"
     />
 
-    {% block feeds %}
-    {% endblock feeds %}
-
-    {% block opengraph %}
-    {% endblock opengraph %}
+    {% block feeds %} {% endblock feeds %} {% block opengraph %} {% endblock
+    opengraph %}
 
     <!-- Default syntax themes -->
     <link rel="stylesheet" href="/syntax-theme-light.css" media="screen" />
@@ -35,6 +32,11 @@
 
     <link rel="stylesheet" href="/reset.css" />
     <link rel="stylesheet" href="/styles.css" />
+
+    <script>
+      /*to prevent Firefox FOUC, this must be here*/
+      let FF_FOUC_FIX;
+    </script>
   </head>
 
   <body>
@@ -56,30 +58,28 @@
       </nav>
 
       {% block content %}
-        <div class="container">
-          <div class="posts">
-            {% for page in section.pages %}
-              {% if not page.extra.hidden %}
-                <div class="post">
-                  <div class="info">
-                    <span>{{ page.date | date(format="%Y %b %d") }}</span>
-                  </div>
-                  <a class="header-link" href="{{ page.path }}">
-                    <h4 class="title">{{ page.title }}</h4>
-                  </a>
-                  <p>{{ page.content | safe | striptags | truncate }}</p>
-                  {{ m::tags(taxonomy=page.taxonomies['tags']) }}
-                </div>
-                <hr />
-              {% endif %}
-            {% endfor %}
+      <div class="container">
+        <div class="posts">
+          {% for page in section.pages %} {% if not page.extra.hidden %}
+          <div class="post">
+            <div class="info">
+              <span>{{ page.date | date(format="%Y %b %d") }}</span>
+            </div>
+            <a class="header-link" href="{{ page.path }}">
+              <h4 class="title">{{ page.title }}</h4>
+            </a>
+            <p>{{ page.content | safe | striptags | truncate }}</p>
+            {{ m::tags(taxonomy=page.taxonomies['tags']) }}
           </div>
+          <hr />
+          {% endif %} {% endfor %}
         </div>
+      </div>
       {% endblock content %}
 
       <footer>
         {% block footer %}
-          <p>Made with <3</p>
+        <p>Made with <3</p>
         {% endblock footer %}
       </footer>
     </div>
