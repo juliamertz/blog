@@ -17,11 +17,20 @@
 
 {% block content %}
   <div class="container index">
-    <article>
-    </article>
-    <p>{{ section.content | safe }}</p>
-    <div class="posts">
+    <article class="index_content">
+      {{ section.content | safe }}
 
+      <div class="socials-grid">
+        <p class="title">Email</p>
+        <a href="mailto:info@juliamertz.dev">info@juliamertz.dev</a>
+
+        <p class="title">Github</p>
+        <a href="https://github.com/juliamertz">juliamertz</a>
+      </div>
+    </article>
+
+    <h3 style="font-size:24px; margin-top: 2rem; margin-bottom: -1rem;">Projects</h3>
+    <div class="posts">
       {% for page in section.pages %}
         {% if not page.extra.hidden %}
           <div class="post">

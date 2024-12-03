@@ -1,5 +1,6 @@
 @import "colors";
 @import "fonts";
+@import "table";
 
 $break-small: 500px;
 $base-font-size: 18px;
@@ -7,6 +8,57 @@ $base-font-size: 18px;
 $font-body: "Parkinsans", serif;
 $font-title: "Parkinsans", serif;
 $font-code: "JetBrainsMono", Monaco, monospace;
+
+.index_content > p > a {
+  margin: 0 !important;
+  padding: 4px 8px;
+  border: 2px solid var(--highlightHigh);
+  border-radius: 3px;
+  color: var(--text);
+
+  &:hover {
+    --color: var(--iris);
+    color: var(--color);
+    border-color: var(--color);
+  }
+}
+
+.socials-grid {
+  padding-top: 1rem;
+  display: grid;
+  width: min-content;
+  grid-template-columns: auto 1fr;
+  gap: 1rem 2rem;
+  align-items: center;
+
+    /* FIX: this is some messy css */
+  p {
+    position: relative;
+    &:before {
+      content: "";
+      left: calc(100% + 1rem);
+      position: absolute;
+      width: 1px;
+      height: calc(100% + 2rem);
+      margin-top: -12.5px;
+      border-right: 2px solid var(--highlightMed);
+    }
+  }
+
+  a {
+    padding: 8px 12px;
+    border: 1px solid var(--text);
+    border-radius: 3px;
+    color: var(--text);
+    font-family: $font-code;
+
+    &:hover {
+      --color: var(--iris);
+      color: var(--color);
+      border-color: var(--color);
+    }
+  }
+}
 
 .container.index {
   & > article {
@@ -542,31 +594,30 @@ sup.footnote-reference {
   color: var(--contrast-weak);
 }
 
-$tag-colors: (
-  rust: var(--rose),
-  nix: var(--iris),
-  react: var(--pine),
-  nextjs: var(--iris),
-  postgresql: var(--love),
-  trpc: var(--foam),
-);
-
-// Mixin to apply colors
-@mixin tag-color($tag) {
-  &[data-tag="#{$tag}"] {
-    border-color: map-get($tag-colors, $tag);
-    color: map-get($tag-colors, $tag);
-    background: none !important;
-  }
-}
-
-// Apply the mixin for all tags in the map
-.chip {
-  @each $tag, $color in $tag-colors {
-    @include tag-color($tag);
-  }
-}
-
+//$tag-colors: (
+//   rust: var(--rose),
+//   nix: var(--iris),
+//   react: var(--pine),
+//   nextjs: var(--iris),
+//   postgresql: var(--love),
+//   trpc: var(--foam),
+// );
+// 
+// // Mixin to apply colors
+// @mixin tag-color($tag) {
+//   &[data-tag="#{$tag}"] {
+//     border-color: map-get($tag-colors, $tag);
+//     color: map-get($tag-colors, $tag);
+//     background: none !important;
+//   }
+// }
+// 
+// // Apply the mixin for all tags in the map
+// .chip {
+//   @each $tag, $color in $tag-colors {
+//     @include tag-color($tag);
+//   }
+// }
 
 .chip {
   font-size: 0.8em;
