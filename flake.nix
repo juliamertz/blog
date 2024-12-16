@@ -33,7 +33,7 @@
             '';
           };
 
-          packages.server = writeShellScriptBin "static-blog-server" ''
+          packages.default = writeShellScriptBin "static-blog-server" ''
             ${lib.getExe pkgs.static-web-server} --port 6969 --root ${packages.public}
           '';
 
