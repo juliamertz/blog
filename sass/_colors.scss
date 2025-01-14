@@ -85,3 +85,10 @@ body {
   --accent: var(--iris);
   --accent-trans: rgb(196, 167, 231, 0.7);
 }
+
+/* embedded react app */
+#root {
+  --text-color: var(--text);
+  --ruler-color: var(--highlightMed);
+  --shape-stroke-color: var(--foam);
+}

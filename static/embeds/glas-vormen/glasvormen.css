@@ -1,0 +1,31 @@
+:root {
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: var(--text-color, #000);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+
+/* svg { */
+/*   border: var(--iris ,red) 1px solid; */
+/* } */
+
+.ruler {
+  stroke: var(--ruler-color, green);
+}
+
+#shape-wrapper path {
+  stroke: var(--shape-stroke-color, red);
+}
