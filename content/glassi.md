@@ -2,7 +2,7 @@
 title = "Glassi"
 date = 2023-01-01
 [taxonomies]
-tags = ["Typescript", "React", "NextJS", "PostgreSQL", "TRPC"]
+tags = ["Typescript", "React", "NextJS", "PostgreSQL", "TRPC", "i18n"]
 kind = ["work"]
 +++
 
